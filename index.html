@@ -62,25 +62,23 @@
             height: 64px;
         }
 
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #1e1e1e;
-                color: #f0f0f0;
-            }
+        /* Dark mode via class */
+        .dark-mode body {
+            background: #1e1e1e;
+            color: #f0f0f0;
+        }
 
-            .logo-container {
-                background: #d3d3d3;
-            }
+        .dark-mode .logo-container {
+            background: #d4d4d4;
+        }
 
-            .linkedin-button {
-                background-color: #3b3b3b;
-                border-color: #f0f0f0;
-            }
+        .dark-mode .linkedin-button {
+            background-color: #2a2a2a;
+            border-color: #f0f0f0;
+        }
 
-            .linkedin-button:hover {
-                background-color: #1b1b1b;
-            }
+        .dark-mode .linkedin-button:hover {
+            background-color: #444;
         }
     </style>
 </head>
@@ -99,6 +97,21 @@
             <img src="mail.png" alt="Mail to Focus Automation B.V." class="linkedin-icon" />
         </a>
     </div>
+    <script>
+        // Detecteer dark mode voorkeur
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark-mode');
+        }
+
+        // Luister naar veranderingen in systeemthema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (e.matches) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+        });
+    </script>
 </body>
 
 </html>
