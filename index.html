@@ -20,7 +20,6 @@
             transition: background 0.3s, color 0.3s;
         }
 
-        /* Logo container */
         .logo-container {
             background: white;
             border-radius: 16px;
@@ -28,9 +27,7 @@
             padding: 8px;
             margin-bottom: 40px;
             max-width: 700px;
-            /* maximaal containerbreedte */
             width: 90%;
-            /* past zich aan scherm aan */
         }
 
         .logo {
@@ -40,7 +37,6 @@
             border-radius: 12px;
         }
 
-        /* Knoppen */
         .linkedin-button {
             background-color: white;
             border: 2px solid #003269;
@@ -62,14 +58,13 @@
             height: 64px;
         }
 
-        /* Dark mode via class */
         .dark-mode body {
             background: #1e1e1e;
             color: #f0f0f0;
         }
 
         .dark-mode .logo-container {
-            background: #d4d4d4;
+            background: #e7e7e7;
         }
 
         .dark-mode .linkedin-button {
@@ -97,21 +92,43 @@
             <img src="mail.png" alt="Mail to Focus Automation B.V." class="linkedin-icon" />
         </a>
     </div>
+    <button id="darkToggle" style="
+  position: fixed; top: 12px; right: 12px;
+  padding: 6px 10px; border-radius: 8px; border: none;
+  background: #003269; color: white; cursor: pointer;
+  font-size: 20px; transition: background 0.3s;
+">
+        ☀️
+    </button>
+
     <script>
-        // Detecteer dark mode voorkeur
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark-mode');
+        const root = document.documentElement;
+        const btn = document.getElementById('darkToggle');
+
+        // Functie om knopstijl bij te werken
+        function updateButton() {
+            const dark = root.classList.contains('dark-mode');
+            btn.textContent = dark ? '🌙' : '☀️';
+            btn.style.background = dark ? '#444' : '#003269';
+            btn.style.color = dark ? '#f0f0f0' : 'white';
         }
 
-        // Luister naar veranderingen in systeemthema
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (e.matches) {
-                document.documentElement.classList.add('dark-mode');
-            } else {
-                document.documentElement.classList.remove('dark-mode');
-            }
+        // Laad opgeslagen status
+        if (localStorage.getItem('darkMode') === 'true') {
+            root.classList.add('dark-mode');
+        }
+
+        // Pas knop aan bij laden
+        updateButton();
+
+        // Toggle modus bij klikken
+        btn.addEventListener('click', () => {
+            root.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', root.classList.contains('dark-mode'));
+            updateButton();
         });
     </script>
+
 </body>
 
 </html>
