@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -16,17 +16,31 @@
             font-family: Arial, sans-serif;
             background: #dbe7f0;
             text-align: center;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Logo container */
+        .logo-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 8px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            /* maximaal containerbreedte */
+            width: 90%;
+            /* past zich aan scherm aan */
         }
 
         .logo {
-            width: 500px;
+            max-width: 100%;
             height: auto;
-            margin-bottom: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            background: white;
+            display: block;
+            border-radius: 12px;
         }
 
+        /* Knoppen */
         .linkedin-button {
             background-color: white;
             border: 2px solid #003269;
@@ -48,29 +62,43 @@
             height: 64px;
         }
 
-        .text {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1e1e1e;
+                color: #f0f0f0;
+            }
+
+            .logo-container {
+                background: #d3d3d3;
+            }
+
+            .linkedin-button {
+                background-color: #3b3b3b;
+                border-color: #f0f0f0;
+            }
+
+            .linkedin-button:hover {
+                background-color: #1b1b1b;
+            }
         }
     </style>
 </head>
 
 <body>
-    <img src="FocusLogo.png" alt="Focus Automation B.V. logo" class="logo" />
+    <div class="logo-container">
+        <img src="FocusLogo.png" alt="Focus Automation B.V. logo" class="logo" />
+    </div>
 
     <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
         <a href="https://www.linkedin.com/in/daveneijsen" target="_blank" rel="noopener noreferrer"
             class="linkedin-button">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                alt="Focus Automation B.V. LinkedIn profile" class="linkedin-icon" />
+            <img src="linkedin.png" alt="Focus Automation B.V. LinkedIn profile" class="linkedin-icon" />
         </a>
         <a href="mailto:contact@focusautomation.nl" class="linkedin-button">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Mail to Focus Automation B.V."
-                class="linkedin-icon" />
+            <img src="mail.png" alt="Mail to Focus Automation B.V." class="linkedin-icon" />
         </a>
     </div>
-
 </body>
 
 </html>
